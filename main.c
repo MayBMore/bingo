@@ -7,9 +7,12 @@
 
 int main(int argc, char *argv[]) {
 	
-	printf("빙고 게임을 시작하지"); 
+	printf("빙고 게임을 시작하지\n"); 
 	
 	int bingo[N][N] = {0,}; //빙고판 2차원 배열하고 0으로 초기화
+	int row; //행
+	int col; //열
+	
 	 
 	 
 	
@@ -19,6 +22,11 @@ int main(int argc, char *argv[]) {
 	
 	return 0;
 }
+
+int initiate_bingo(int row, int col)
+{
+	
+ } 
 
 /* 사용해야 할 함수
 initiate_bingo():빙고 테이블을 초기에 만들어줌
