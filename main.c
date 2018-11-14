@@ -5,6 +5,18 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+int initiate_bingo(int row, int col)
+{
+	int i;
+	int max = N*N;
+	
+	srand((unsigned)time(NULL));
+	for(i=0 ; i<=max ; i++)
+		printf("%d", 1+rand()%max);
+		
+	return 0;
+ } 
+
 int main(int argc, char *argv[]) {
 	
 	printf("빙고 게임을 시작하지\n"); 
@@ -23,10 +35,6 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-int initiate_bingo(int row, int col)
-{
-	
- } 
 
 /* 사용해야 할 함수
 initiate_bingo():빙고 테이블을 초기에 만들어줌
