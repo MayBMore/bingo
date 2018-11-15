@@ -1,21 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h> //난수 
 #define N 5 //N을 다음 숫자로 치환한다. 
 #define M //M을 다음 숫자로 치환한다. 
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int initiate_bingo() //빙고 테이블을 초기에 만들어 줌 
-{
+ {
 	int bingo[N][N];
 	int i, j;
 	
+	srand((int)time(NULL)); //랜덤함수
 	
+	for (i=0 ; i<N ; i++) //1부터 N까지 숫자 넣기 
+	{
+		for (j=0 ; j<N ; j++)
+		{
+			bingo[i][j] = rand()%N+1;
+		}
+		
+	}
+ }
 	
-	
- } 
- 
- int print_bingo(); //빙고 테이블 현재 상황을 화면에 출력
+ int print_bingo() //빙고 테이블 현재 상황을 화면에 출력
+ {
+ 	int bingo[N][N];
+	 int i,j; 
+	 
+	 for (i=0 ; i<N ; i++)
+	 {
+	 	for (j=0 ; j<N ; j++)
+	 	{
+	 		printf("%2d", bingo[i][j]);
+		 }
+		printf("\n");
+	 }
+ }
  
  int get_number_byMe(); //내가 빙고 번호 입력 선택
  
