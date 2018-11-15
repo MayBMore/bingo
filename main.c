@@ -5,17 +5,26 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int initiate_bingo(int row, int col)
+int initiate_bingo() //빙고 테이블을 초기에 만들어 줌 
 {
-	int i;
-	int max = N*N;
+	int bingo[N][N];
+	int i, j;
 	
-	srand((unsigned)time(NULL));
-	for(i=0 ; i<=max ; i++)
-		printf("%d", 1+rand()%max);
-		
-	return 0;
+	
+	
+	
  } 
+ 
+ int print_bingo(); //빙고 테이블 현재 상황을 화면에 출력
+ 
+ int get_number_byMe(); //내가 빙고 번호 입력 선택
+ 
+ int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
+ 
+ int process_bingo(); //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
+ 
+ int count_bingo(); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
+ 
 
 int main(int argc, char *argv[]) {
 	
@@ -35,14 +44,5 @@ int main(int argc, char *argv[]) {
 	
 	return 0;
 }
-
-
-/* 사용해야 할 함수
-initiate_bingo():빙고 테이블을 초기에 만들어줌
-print_bingo():빙고 테이블 현재 상황을 화면에 출력
-get_number_byMe():내가 빙고 번호 입력 선택
-get_number_byCom():컴퓨터가 임의로 빙고 번호 선택
-process_bingo():선택된 숫자를 ㅣㅂ력받아서 빙고 테이블 칸을 채움
-count_bingo():빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 */
 
  
