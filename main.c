@@ -6,10 +6,12 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int initiate_bingo() //빙고 테이블을 초기에 만들어 줌 
+void initiate_bingo() //빙고 테이블을 초기에 만들어 줌 
  {
 	int bingo[N][N]={0,};
 	int i, j;
+	int temp[50];
+	int tem;
 	
 	srand((int)time(NULL)); //랜덤함수
 	
@@ -17,7 +19,16 @@ int initiate_bingo() //빙고 테이블을 초기에 만들어 줌
 	{
 		for (j=0 ; j<N ; j++)
 		{
-			bingo[i][j] = rand()%(N*N)+1;
+			while(1)
+			{
+				tem = rand()%(N*N)+1;
+				if(temp[tem]==0)
+				{
+					bingo[i][j] = tem;
+					temp[tem]=1;
+					break;
+				}
+			}
 		}
 		
 	}
