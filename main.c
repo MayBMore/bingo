@@ -6,37 +6,21 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-void initiate_bingo() //빙고 테이블을 초기에 만들어 줌 
+int bingo[N][N];
+
+int initiate_bingo(int grade[N][N]) //빙고 테이블을 초기에 만들어 줌 
  {
-	int bingo[N][N]={0,};
-	int i, j;
-	int temp[50];
-	int tem;
-	
-	srand((int)time(NULL)); //랜덤함수
+	int i, j, temp = 0; //0으로 초기화 
 	
 	for (i=0 ; i<N ; i++) //1부터 N까지 숫자 넣기 
 	{
-		for (j=0 ; j<N ; j++)
-		{
-			while(1)
-			{
-				tem = rand()%(N*N)+1;
-				if(temp[tem]==0)
-				{
-					bingo[i][j] = tem;
-					temp[tem]=1;
-					break;
+		temp += bingo[i][j]; 
 				}
-			}
-		}
-		
-	}
+	return temp;
  }
 	
- int print_bingo() //빙고 테이블 현재 상황을 화면에 출력
+void print_bingo(int bingo[N][N]) //빙고 테이블 현재 상황을 화면에 출력
  {
- 	int bingo[N][N];
 	 int i,j; 
 	 
 	 for (i=0 ; i<N ; i++)
@@ -44,8 +28,9 @@ void initiate_bingo() //빙고 테이블을 초기에 만들어 줌
 	 	for (j=0 ; j<N ; j++)
 	 	{
 	 		printf("%Nd", bingo[i][j]);
+	 		if(j==N-1)
+	 		printf("\n");
 		 }
-		printf("\n");
 	 }
  }
  
@@ -60,9 +45,22 @@ void initiate_bingo() //빙고 테이블을 초기에 만들어 줌
 
 int main(int argc, char *argv[]) {
 	
+	int bingo[N][N]; //빙고 배열 선언
+	int i, j; //변수 선언
+	
+	srand((int)time(NULL)); //랜덤 함수
+	
+	for(i=0 ; i<N ; i++){
+		for(j=0 ; j<N ; j++){
+			bingo[i][j] = rand()%(N*N)+1;
+		}
+	} 
+	
 	printf("=====빙고 게임을 시작하지=====\n"); 
 	
-	initiate_bingo();
+	initiate_bingo(int bingo [N][N]); //빙고판 함수 호출 
+	
+	
 	print_bingo();
 	 
 	 
