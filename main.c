@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
 	int row; //За
 	int col; //ї­
 	
+	printf("test");
 	 
 	 
 	
