@@ -51,8 +51,11 @@
  
  int process_bingo(); //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
  
- int count_bingo(int bingo[N][N], int sum[12]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
+ int count_bingo(int bingo[N][N], int sumbingo[N+N+2]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
+	int count = 0;
  	
+	//가로합
+	
  }
  
 
