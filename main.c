@@ -59,6 +59,13 @@
 	int count = 0; //빙고 수 저장
 	
 	//가로
+	for (i=0 ; i<N ; i++) {
+		for(j=0 ; j<N ; j++) {
+			if (bingo[i*N+j] == 35 ) //얘가 좀 이상함; 
+				sumbingo[i]++;
+			
+		}
+	}
 	 
  	
 	
