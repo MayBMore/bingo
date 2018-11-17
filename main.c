@@ -7,12 +7,21 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
  int bingo[N][N];
+ int i, j ; //행과 열 변수 
 
  int initiate_bingo(int bingo[N][N]); //빙고 테이블을 초기에 만들어 줌 
 	
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
 
- int get_number_byMe(); //내가 빙고 번호 입력 선택
+ int get_number_byMe() { //내가 빙고 번호 입력 선택
+
+	int input=0; //입력받을 숫자
+	  
+	printf("숫자를 입력하세요. : ");
+	scanf("%d", &input);
+
+	
+ }
  
  int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
  
@@ -25,7 +34,7 @@ int main(int argc, char *argv[]) {
 	
 	srand((int)time(NULL)); //랜덤 함수
 	int bingo[N][N]; //빙고 배열 선언
-	int i, j, k, temp; //변수 선언
+	int k, temp; //변수 선언
 	int count = 1;
 	
 	printf("=====빙고 게임을 시작하지=====\n"); 
