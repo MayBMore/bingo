@@ -58,6 +58,8 @@
 	int sumbingo[N+N+2] = {0}; //초기화 
 	int count = 0; //빙고 수 저장
 	
+	/* 모든 *들 이상하니까 다시 확인*/
+	 
 	//가로
 	for (i=0 ; i<N ; i++) {
 		for(j=0 ; j<N ; j++) {
@@ -66,9 +68,37 @@
 			
 		}
 	}
-	 
- 	
 	
+	//세로
+	for (i=0 ; i<N ; i++) {
+		for (j=0 ; j<N ; j++) {
+			if(bingo[j*N+i] == 35)
+				sumbingo[i+N]++;
+		}
+	} 
+	 
+	//대각선(왼쪽>>오른쪽)
+	for (i=0 ; i<N ; i++) {
+		for (j=i ; j<=i ; j++) {
+			if(bingo[i*5+j] == 35)
+				sumbingo[N+N]++;
+		}
+	} 
+	
+	//대각선(오른쪽>>왼쪽)
+	for (i=(N-1) ; i>=0 ; i--) {
+		for (j=(N-1) ; j>=4-i ; j--) {
+			if (bingo[i*5+j] == 35)
+				sumbingo[N+N+1]++;
+		}
+	} 
+	
+	//수세기
+	for(i=0 ; i<(N+N+2) ; i++)
+		if (sumbingo[i] == -N)
+			count++;
+			
+	return count; 
 	
  }
  
