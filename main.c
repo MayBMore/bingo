@@ -51,7 +51,15 @@
  
  int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
  
- int process_bingo(); //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
+ int process_bingo(int bingo[N][N], int inputMe, int inputCom) { //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
+	for (i=0 ; i<N ; i++) {
+		for (j=0 ; j<N ; j++) {
+			if(bingo[i][j] == inputMe || bingo[i][j] == inputCom) 
+				bingo[i][j] = -1;
+		}
+	}
+ }
+ 
  
  int count_bingo(int bingo[N][N]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
 	
