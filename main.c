@@ -5,11 +5,13 @@
 #define M //M을 다음 숫자로 치환한다. 
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
+ 
+ /*전역변수*/ 
  int bingo[N][N];
  int i, j ; //행과 열 변수 
  int inputMe, inputCom ; //내가 입력한 숫자, 컴퓨터가 입력한 숫자 
 
+ /*함수*/ 
  int initiate_bingo(int bingo[N][N]); //빙고 테이블을 초기에 만들어 줌 
 	
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
@@ -51,10 +53,15 @@
  
  int process_bingo(); //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
  
- int count_bingo(int bingo[N][N], int sumbingo[N+N+2]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
-	int count = 0;
+ int count_bingo(int bingo[N][N]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
+	
+	int sumbingo[N+N+2] = {0}; //초기화 
+	int count = 0; //빙고 수 저장
+	
+	//가로
+	 
  	
-	//가로합
+	
 	
  }
  
