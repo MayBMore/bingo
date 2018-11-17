@@ -8,6 +8,7 @@
 
  int bingo[N][N];
  int i, j ; //행과 열 변수 
+ int inputMe, inputCom ; //내가 입력한 숫자, 컴퓨터가 입력한 숫자 
 
  int initiate_bingo(int bingo[N][N]); //빙고 테이블을 초기에 만들어 줌 
 	
@@ -15,12 +16,35 @@
 
  int get_number_byMe() { //내가 빙고 번호 입력 선택
 
-	int input=0; //입력받을 숫자
+	int inputMe=0; //입력받을 숫자
 	  
 	printf("숫자를 입력하세요. : ");
-	scanf("%d", &input);
+	scanf("%d", &inputMe);
 
+	/*1~N*N 정수 입력시*/ 
+	if (inputMe>=1 && inputMe<=(N*N)) {
+		for (i=0 ; i<N ; i++) {
+			for (j=0 ; j<N ; j++){
+				if(bingo[i][j]==inputMe) { //입력값이 빙고에 있을 때 
+					bingo[i][j] = -1 ; //-1로 치환
+					break; 
+				}
+			}
+		}
+	} 
 	
+	/*내가 입력한 숫자와 컴퓨터가 입력한 숫자가 같을 때*/ 
+	else if (inputMe == inputCom) {
+		printf("이미 선택된 숫자입니다. 다시 선택해 주세요. : ");
+		scanf("%d", &inputMe); 
+		
+	}
+	
+	/*1~N*N 정수 입력이 아닐시*/ 
+	else {
+		printf("잘못입력하였습니다. 다시 입력해주세요. : ");
+		scanf("%d", &inputMe); 
+	}
  }
  
  int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
