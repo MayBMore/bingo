@@ -8,7 +8,7 @@
 
 int bingo[N][N];
 
-int initiate_bingo(int grade[N][N]) //빙고 테이블을 초기에 만들어 줌 
+int initiate_bingo(int bingo[N][N]) //빙고 테이블을 초기에 만들어 줌 
  {
 	int i, j, temp = 0; //0으로 초기화 
 	
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
 	
 	for(i=0 ; i<N ; i++){
 		for(j=0 ; j<N ; j++){
-			bingo[i][j] = rand()%(N*N)+1;
+			bingo[i][j] = (rand()%(N*N))+1;
 		}
 	} 
 	
