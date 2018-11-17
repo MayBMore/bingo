@@ -6,7 +6,7 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int bingo[N][N];
+ int bingo[N][N];
 
  int initiate_bingo(int bingo[N][N]); //빙고 테이블을 초기에 만들어 줌 
 	
@@ -58,6 +58,39 @@ int main(int argc, char *argv[]) {
 		}
 		printf("\n");
 	} 
+	
+	/*컴퓨터의 빙고판*/
+	printf("\n \n");
+	printf("이것은 컴퓨터의 빙고판\n");
+	
+	int Cran_row = rand()%N; //행의 랜덤
+	int Cran_col = rand()%N; //열의 랜덤
+	
+	/*배열에 1부터 N*N 넣기*/ 
+	for (i=0 ; i<N ; i++){
+		for (j=0 ; j<N ; j++){
+			bingo[i][j] = count++;
+		}
+	} 
+	
+	/*빙고판섞기*/
+	for (k=0 ; k<N ; k++){
+		for (i=0 ; i<N ; i++){
+			for (j=0 ; j<N ; j++) {
+				temp = bingo[i][j];
+				bingo[i][j] = bingo[Cran_row][Cran_col];
+				bingo[Cran_row][Cran_col] = temp;
+			}
+		}
+	} 
+	
+	/*빙고판 출력*/
+	for (i=0 ; i<N ; i++){
+		for (j=0 ; j<N ; j++){
+			printf("%2d ", bingo[i][j]);
+		}
+		printf("\n");
+	}  
 	 
 	 
 	
