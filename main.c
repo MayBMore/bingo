@@ -181,61 +181,11 @@ int main(int argc, char *argv[]) {
 		}
 	} 
 	
-		/*컴퓨터의 빙고판*/
-	printf("\n \n");
-	printf("이것은 컴퓨터의 빙고판\n");
+	print_bingo(bingoMe[N][N]) ; //내 빙고판 출력
 	
-	int Cran_row = rand()%N; //행의 랜덤
-	int Cran_col = rand()%N; //열의 랜덤
+	printf("\n") ;
 	
-	/*배열에 1부터 N*N 넣기*/ 
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			bingo[i][j] = count++;
-		}
-	} 
-	
-	/*빙고판섞기*/
-	for (k=0 ; k<N ; k++){
-		for (i=0 ; i<N ; i++){
-			for (j=0 ; j<N ; j++) {
-				temp = bingo[i][j];
-				bingo[i][j] = bingo[Cran_row][Cran_col];
-				bingo[Cran_row][Cran_col] = temp;
-			}
-		}
-	} 
-	
-	/*빙고판 출력*/
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			printf("%2d ", bingo[i][j]);
-		}
-		printf("\n");
-	}  
-	
-	printf("\n"); 
-	
-	get_number_byMe();
-	
-	printf("\n");
-	
-	get_number_byCom();
-	
-	printf("\n");
-	
-	process_bingo;
-	
-	printf("\n");
-	
-	count_bingo;
-	
-	printf("\n");
-	
-	
-	
-	
-	
+	print_bingo(bingoCom[N][N]) ; //컴퓨터 빙고판 출력 
 	
 	return 0;
 }
