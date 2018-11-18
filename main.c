@@ -207,52 +207,68 @@
  
  int count_bingo(int bingo[N][N]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
 	
-	int sumbingo[N+N+2] = {0}; //초기화 
-	int count = 0; //빙고 수 저장
+	int i, j, sum; //한 줄의 합이 -N이 되면 빙고
 	
-	/* 모든 *들 이상하니까 다시 확인*/
-	 
-	//가로
-	for (i=0 ; i<N ; i++) {
-		for(j=0 ; j<N ; j++) {
-			if (bingo[i*N+j] == 35 ) //얘가 좀 이상함; 
-				sumbingo[i]++;
-			
+	for (i=0 ; i<N ; i++) { //행 확인 
+		sum = 0; //sum 초기화
+		
+		for (j=0 ; j<N ; j++) {
+			sum += bingo[i][j];
+		} 
+		
+		if (sum == -5) {
+			return 1;
+		}
+	} 
+	
+	for (j=0 ; j<N ; j++) { //열 확인 
+		sum = 0 ; //sum 초기화
+		
+		for (i=0 ; i<N ; i++) {
+			sum += bingo[i][j];
+		} 
+		
+		if (sum == -5) {
+			return 1;
 		}
 	}
 	
-	//세로
-	for (i=0 ; i<N ; i++) {
-		for (j=0 ; j<N ; j++) {
-			if(bingo[j*N+i] == 35)
-				sumbingo[i+N]++;
-		}
-	} 
-	 
-	//대각선(왼쪽>>오른쪽)
-	for (i=0 ; i<N ; i++) {
-		for (j=i ; j<=i ; j++) {
-			if(bingo[i*5+j] == 35)
-				sumbingo[N+N]++;
-		}
-	} 
+	sum = 0; //대각선을 위한 sum 초기화
 	
-	//대각선(오른쪽>>왼쪽)
-	for (i=(N-1) ; i>=0 ; i--) {
-		for (j=(N-1) ; j>=4-i ; j--) {
-			if (bingo[i*5+j] == 35)
-				sumbingo[N+N+1]++;
-		}
+	for (i=0 ; i<N ; i++) { //대각선 확인
+		sum += bingo[i][i]; 
+	}
+	
+	if (sum == -5) {
+		return 1;
+	}
+	
+	sum = 0;
+	
+	for (i=0 ; i<N ; i++) { //대각선 확인 
+		sum += bingo[i][N-i-1];
+	}
+	
+	if (sum == -5) {
+		return 1;
 	} 
 	
-	//수세기
-	for(i=0 ; i<(N+N+2) ; i++)
-		if (sumbingo[i] == -N)
-			count++;
-			
-	return count; 
-	
-	
-	
- } 
+	return 0; //아직 빙고가 없음 
+}
+
+
+
+
+/*내일 할 일
+1.  get_number_byMe
+	get_number_byCom
+	함수 뜯어 고치기 ㅡㅡ
+
+2.	그리고 전체적으로 돌아가나 보기
+3.	안 돌아가면 운다
+4.	퀸 너무 좋다 포토티켓 다 모으고 싶고 한정판 포스터 다 모으고 싶다
+5.	돈이 없어 너무 슬프다.
+6.	이번 달 어떻게 버티지
+7.	이렇게 늦게 자서 내일 어떻게 버티지
+*/ 
  
