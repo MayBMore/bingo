@@ -156,30 +156,32 @@ int main(int argc, char *argv[]) {
 	
 	printf("=====빙고 게임을 시작하지=====\n");  
 	
-	initiate_bingo(bingoMe[N][N]); //initiate_bingo 함수를 사용해 내 빙고판 불러오기 
+	initiate_bingo(bingoMe[N][N]); //initiate_bingo 함수를 사용해 내 빙고판 불러오기
+	initiate_bingo(bingoCom[N][N]); //initiate_bingo 함수를 사용해 컴퓨터의 빙고판 불러오기 
 	
-	/*빙고판섞기*/
+	/*내 빙고판섞기*/
 	for (k=0 ; k<N ; k++){
 		for (i=0 ; i<N ; i++){
 			for (j=0 ; j<N ; j++) {
-				temp = bingo[i][j];
-				bingo[i][j] = bingo[ran_row][ran_col];
-				bingo[ran_row][ran_col] = temp;
+				temp = bingoMe[i][j];
+				bingoMe[i][j] = bingoMe[ran_row][ran_col];
+				bingoMe[ran_row][ran_col] = temp;
 			}
 		}
 	} 
 	
-	
-	
-	/*빙고판 출력*/
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			printf("%2d ", bingoMe[i][j]);
+	/*컴퓨터 빙고판섞기*/ 
+	for (k=0 ; k<N ; k++){
+		for (i=0 ; i<N ; i++){
+			for (j=0 ; j<N ; j++) {
+				temp = bingoCom[i][j];
+				bingoCom[i][j] = bingoCom[ran_row][ran_col];
+				bingoCom[ran_row][ran_col] = temp;
+			}
 		}
-		printf("\n");
 	} 
 	
-	/*컴퓨터의 빙고판*/
+		/*컴퓨터의 빙고판*/
 	printf("\n \n");
 	printf("이것은 컴퓨터의 빙고판\n");
 	
