@@ -23,7 +23,6 @@
  int bingo[N][N]; //빙고 배열 선언 
  int i, j ; //행과 열 변수 
  int inputMe, inputCom ; //내가 입력한 숫자, 컴퓨터가 입력한 숫자 
- int bingoMe[N][N], bingoCom[N][N] ; //내 빙고판, 컴퓨터 빙고판 
 
  /*함수*/ 
  int initiate_bingo(int bingo[N][N]) { //빙고 테이블을 초기에 만들어 줌 
@@ -153,10 +152,11 @@ int main(int argc, char *argv[]) {
 	int count = 1;
 	int ran_row = rand()%N; //행의 랜덤
 	int ran_col = rand()%N; //열의 랜덤
+	int bingoMe[N][N], bingoCom[N][N] ; //내 빙고판, 컴퓨터 빙고판 
 	
 	printf("=====빙고 게임을 시작하지=====\n");  
 	
-	initiate_bingo(bingoMe[N][N]);
+	initiate_bingo(bingoMe[N][N]); //initiate_bingo 함수를 사용해 내 빙고판 불러오기 
 	
 	/*빙고판섞기*/
 	for (k=0 ; k<N ; k++){
@@ -169,10 +169,12 @@ int main(int argc, char *argv[]) {
 		}
 	} 
 	
+	
+	
 	/*빙고판 출력*/
 	for (i=0 ; i<N ; i++){
 		for (j=0 ; j<N ; j++){
-			printf("%2d ", bingo[i][j]);
+			printf("%2d ", bingoMe[i][j]);
 		}
 		printf("\n");
 	} 
