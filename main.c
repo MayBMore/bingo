@@ -35,9 +35,7 @@
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
  
- 
- 
-int main(int argc, char *argv[]) {
+ void main() {
 	
 	srand((int)time(NULL)); //랜덤 함수
 	int k, temp; //변수 선언
