@@ -36,65 +36,81 @@
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
  
  void main() {
+ 	
+	int num;
+	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수 
 	
-	srand((int)time(NULL)); //랜덤 함수
-	int k, temp; //변수 선언
-	int count = 1;
-	int ran_row = rand()%N; //행의 랜덤
-	int ran_col = rand()%N; //열의 랜덤
+	initiate_bingo; //빙고테이블 소환 
+	
+	
+	
+	
 	
 	printf("=====빙고 게임을 시작하지=====\n");  
-	
-		
-	/*컴퓨터의 빙고판*/
-	printf("\n \n");
-	printf("이것은 컴퓨터의 빙고판\n");
-	
-	int Cran_row = rand()%N; //행의 랜덤
-	int Cran_col = rand()%N; //열의 랜덤
-	
-	/*배열에 1부터 N*N 넣기*/ 
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			bingo[i][j] = count++;
-		}
-	} 
-	
-	/*빙고판섞기*/
-	for (k=0 ; k<N ; k++){
-		for (i=0 ; i<N ; i++){
-			for (j=0 ; j<N ; j++) {
-				temp = bingo[i][j];
-				bingo[i][j] = bingo[Cran_row][Cran_col];
-				bingo[Cran_row][Cran_col] = temp;
-			}
-		}
-	} 
-	
-	/*빙고판 출력*/
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			printf("%2d ", bingo[i][j]);
-		}
-		printf("\n");
-	}  
 	
 	return 0;
 }
 
 //함수
  void initiate_bingo() { //빙고 테이블을 초기에 만들어 줌 
-
-	int temp; //임시변수
-	for (i=0 ; i<N ; i++) {
+	
+	int i, j;
+	int temp;
+	int k;
+	int order = 1;
+	int bingo[N][N];
+	
+	srand((unsigned int)time(NULL));
+	int ran_row = rand()%N; //행의 랜덤
+	int ran_col = rand()%N; //열의 랜덤
+	
+	for (i=0 ; i<N ; i++) { //배열에 1~N 배치 
 		for (j=0 ; j<N ; j++) {
-			temp = rand()%(N*N)+1;
-			if (bingo[i][j] == temp)
-				j--;
-			else
-				bingo[i][j] = temp;
+			bingo[i][j] = order++;
 		}
 	} 
+	
+	for (k=0 ; k<N ; k++) { //빙고판 섞기 
+		for (i=0 ; i<N ; i++) {
+			for (j=0 ; j<N ; j++) {
+				temp = bingo[i][j];
+				bingo[i][j] = bingo[ran_row][ran_col];
+				bingo[ran_row][ran_col] = temp;
+			}
+		}
+	}
+ }
+
+
+
+void set_rand(int*array) {
+
+	int i;
+
+	for(i=0 ; i<SIZE2 ; i++) {
+
+		array[i] = i+1;
+
+	}
+
+	for (i=0 ; i<SIZE2 ; i++) {
+
+		swap(&array[i], &array[rand()%25]);
+
+	}
+
+}
+ void swap(int*x, int*y) {
+
+	int temp;
+
+	temp = *x;
+
+	*x = *y;
+
+	*y = temp;
+
+}
 	}
 	
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
