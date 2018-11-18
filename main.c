@@ -20,10 +20,10 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
  
- int bingo[N][N];
+ int bingo[N][N]; //빙고 배열 선언 
  int i, j ; //행과 열 변수 
  int inputMe, inputCom ; //내가 입력한 숫자, 컴퓨터가 입력한 숫자 
- int bingoMe, bingoCom ; //내 빙고판, 컴퓨터 빙고판 
+ int bingoMe[N][N], bingoCom[N][N] ; //내 빙고판, 컴퓨터 빙고판 
 
  /*함수*/ 
  int initiate_bingo(int bingo[N][N]) { //빙고 테이블을 초기에 만들어 줌 
@@ -149,13 +149,14 @@
 int main(int argc, char *argv[]) {
 	
 	srand((int)time(NULL)); //랜덤 함수
-	int bingo[N][N]; //빙고 배열 선언
 	int k, temp; //변수 선언
 	int count = 1;
 	int ran_row = rand()%N; //행의 랜덤
 	int ran_col = rand()%N; //열의 랜덤
 	
 	printf("=====빙고 게임을 시작하지=====\n");  
+	
+	initiate_bingo(bingoMe[N][N]);
 	
 	/*빙고판섞기*/
 	for (k=0 ; k<N ; k++){
