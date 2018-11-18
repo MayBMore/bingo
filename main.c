@@ -30,7 +30,7 @@
 
  void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
- int get_number_byMe(int input); //내가 빙고 번호 입력 선택
+ int get_number_byMe(); //내가 빙고 번호 입력 선택
  int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
@@ -42,13 +42,49 @@
 	
 	initiate_bingo; //빙고테이블 소환 
 	
-	
-	
-	
-	
 	printf("=====빙고 게임을 시작하지=====\n");  
 	
-	return 0;
+	do {
+		
+		printf("===내 빙고판===\n"); //내 빙고판 출력 
+		print_bingo(bingoMe[N][N]);
+		
+		num = get_number_byMe; //내가 번호 선택
+		
+		process_bingo(bingoMe[N][N], num); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom[N][N], num);
+		
+		num =  get_number_byCom; //컴퓨터가 번호 선택
+		
+		process_bingo(bingoMe[N][N], num); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom[N][N], num);
+		
+		winMe = count_bingo(bingoMe[N][N]); //빙고 확인 
+		winCom = count_bingo(bingoCom[N][N]);
+		
+	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
+	
+	printf("===나의 결과==="); //내 빙고판 출력 
+	print_bingo(bingoMe[N][N]);
+	
+	printf("===컴퓨터의 결과==="); //컴퓨터의 빙고판 출력
+	print_bingo(bingoCom[N][N]); 
+	
+	switch (winCom*2+winMe) { //승자 알려줌 
+		case 1 : //내가 이김
+			printf("내가 이겼습니다.\n");
+			break;
+		case 2 : //컴퓨터가 이김
+			printf("컴퓨터가 이겼습니다.\n");
+			break;
+		case 3 : //비김
+			 printf("비겼습니다.\n");
+			 break;
+		default : //에러 
+			printf("Error\n");
+			break;
+	}
+	
 }
 
 //함수
@@ -82,16 +118,26 @@
  }
 
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
- 		/*빙고판 출력*/
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			printf("%2d ", bingo[i][j]);
+ 	
+ 	int i, j;
+	
+	for (i=0 ; i<N ; i++) {
+		for (j=0 ; j<N ; j++) {
+			if (bingo[i][j] != -2) { //why?
+				printf("%7d", bingo[i][j]);
+			}
+			
+			else { //에러난 경우 
+				printf("Error\n"); 
+			}
 		}
-		printf("\n");
+		
+		printf("\n\n");
+		
 	} 
  }
 
- int get_number_byMe(int input) { //내가 빙고 번호 입력 선택
+ int get_number_byMe() { //내가 빙고 번호 입력 선택
 
 	int inputMe=0; //입력받을 숫자
 	  
@@ -135,6 +181,28 @@
 				bingo[i][j] = -1;
 		}
 	}
+	
+	/*void erase_bingo(int arr[5][5], int number) { //입력받은 number와 같은 수를 0으로 만드는 함수 
+
+	int x, y;
+
+	
+
+	for (y=0 ; y<SIZE ; y++) { //x,y를 일일이 바꿔가면서 number와 같은지 확인 
+
+		for(x=0 ; x<SIZE ; x++) {
+
+			if(arr[y][x] == number) {
+
+				arr[y][x] = 0;
+
+			}
+
+		} 
+
+	} 
+
+}*/
  }
  
  int count_bingo(int bingo[N][N]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
@@ -183,6 +251,8 @@
 			count++;
 			
 	return count; 
+	
+	
 	
  } 
  
