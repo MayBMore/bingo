@@ -81,38 +81,6 @@
 	}
  }
 
-
-
-void set_rand(int*array) {
-
-	int i;
-
-	for(i=0 ; i<SIZE2 ; i++) {
-
-		array[i] = i+1;
-
-	}
-
-	for (i=0 ; i<SIZE2 ; i++) {
-
-		swap(&array[i], &array[rand()%25]);
-
-	}
-
-}
- void swap(int*x, int*y) {
-
-	int temp;
-
-	temp = *x;
-
-	*x = *y;
-
-	*y = temp;
-
-}
-	}
-	
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
  		/*빙고판 출력*/
 	for (i=0 ; i<N ; i++){
