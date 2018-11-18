@@ -20,12 +20,13 @@
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
  
- int bingo[N][N]; //빙고 배열 선언 
- int i, j ; //행과 열 변수 
- int inputMe, inputCom ; //내가 입력한 숫자, 컴퓨터가 입력한 숫자 
- int bingoMe[N][N], bingoCom[N][N] ; //내 빙고판, 컴퓨터 빙고판 
+ //전역 변수 
+ int checking [N*N] ;
+ int count = 0;
+ int bingoMe[N][N]; //내 빙고 
+ int bingoCom[N][N]; //컴퓨터 빙고 
 
-//함수선언
+ //함수선언
 
  void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
