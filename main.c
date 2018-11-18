@@ -28,18 +28,16 @@
  /*함수*/ 
  int initiate_bingo(int bingo[N][N]) { //빙고 테이블을 초기에 만들어 줌 
 
-	int index ; //반복을 위한 index 변수
-	int x, y; //맞교환할 두 개의 index를 담아 놓을 변수
-	int temp; //임시 변수
-	
-	for (index=0 ; index<N ; index++)
-		bingo[index] = index +1;
-	for(index=0 ; index<100 ; index++) {
-		x = rand()%N;
-		y = rand()%N;
-		temp = bingo[x];
-		bingo[x] = bingo[y];
-		bingo[y] = temp;
+	int temp; //임시변수
+	for (i=0 ; i<N ; i++) {
+		for (j=0 ; j<N ; j++) {
+			temp = rand()%(N*N)+1;
+			if (bingo[i][j] == temp)
+				j--;
+			else
+				bingo[i][j] = temp;
+		}
+	} 
 	}
 	
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
