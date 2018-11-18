@@ -15,7 +15,7 @@
 	-나 혹은 상대방의 빙고테이블이 가로/세로/대각선 줄이 M개 이상 만들어지면 반복 종료
 4. M개 줄이 만들어진 쪽이 승리하며, 승리자가 누군지와 몇번째 turn에서 승부가 났는지 출력
 5. 내가 숫자를 선택할 때, 이미 선택되었거나 범위 밖의 숫자를 선택하면 오류 메세지를 출력하고 다시 숫자를 입력.
-6. 내가 숫자를 선택할 때, 이미 선택되었거나 범위 밖의 숫자를 선택하면 오류 메시지를 출력하고 다시 숫자를 입력 받음 */
+*/
 
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -28,16 +28,19 @@
  /*함수*/ 
  int initiate_bingo(int bingo[N][N]) { //빙고 테이블을 초기에 만들어 줌 
 
-	srand((int)time(NULL)); //랜덤 함수
-	int count = 1;
+	int index ; //반복을 위한 index 변수
+	int x, y; //맞교환할 두 개의 index를 담아 놓을 변수
+	int temp; //임시 변수
 	
-	/*배열에 1부터 N*N 넣기*/ 
-	for (i=0 ; i<N ; i++){
-		for (j=0 ; j<N ; j++){
-			bingo[i][j] = count++;
-		}
-	} 
- }
+	for (index=0 ; index<N ; index++)
+		bingo[index] = index +1;
+	for(index=0 ; index<100 ; index++) {
+		x = rand()%N;
+		y = rand()%N;
+		temp = bingo[x];
+		bingo[x] = bingo[y];
+		bingo[y] = temp;
+	}
 	
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
  		/*빙고판 출력*/
