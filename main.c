@@ -31,7 +31,7 @@
 
  void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
- int get_number_byMe(); //내가 빙고 번호 입력 선택
+ int get_number_byMe(int sth); //내가 빙고 번호 입력 선택
  int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
@@ -138,45 +138,43 @@
 	} 
  }
 
- int get_number_byMe(int input) { //내가 빙고 번호 입력 선택
-	int inputMe; //내가 입력할 숫자
+ int get_number_byMe(int sth) { //내가 빙고 번호 입력 선택
 	int x, retry; //??
 	
 	do {
 		retry = 0;
-		if (input == 0) { //0:나, 1:컴퓨터 
+		if (sth == 0) { //0:나, 1:컴퓨터 
 			printf("1~N*N 사이의 숫자를 입력하세요. : ");
-			scanf("%d", &inputMe);
-			if (inputMe<1 || inputMe>N*N) {
+			scanf("%d", &input);
+			if (input<1 || input>N*N) {
 				retry = 1; //retry=1이면 입력에러. 다시 입력 
 			} 
 		} 
-		}
+		} while (retry == 1);
 		
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
-				if (checking[x] == inputMe && checking[x] == inputCom) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
+				if (checking[x] == input) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
 					retry = 1;
 					break; 
 				}
 			}
 		}
-	} while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아감
-	
-	checking[count++] = inputMe;
-	if (input == 0) {
-		printf("사용자가 '%d'를 선택했습니다. \n", inputMe);
-	} 
-	else {
-		printf("컴퓨터가 '%d'를 선택했습니다. \n\n", inputCom);
 	}
 	
-	return inputMe;
+	int checking[count++] = input;
+	if (sth == 0) {
+		printf("사용자가 '%d'를 선택했습니다. \n", input);
+	} 
+	else {
+		printf("컴퓨터가 '%d'를 선택했습니다. \n\n", input);
+	}
+	
+	return input;
 	
  }
  
  int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
-	int inputCom;
 	inputCom = rand()%(N*N)+1; 
  }
  
@@ -241,3 +239,10 @@
 }
 
 
+
+/* 해야할 것
+1. 일단 돌아가나
+2. M개의 줄이 완성되면 승자 외치기
+3. 승자를 말하면서 몇번째에 내가 이겼나 말하기
+4. 변수 이름 바꾸기
+5. 주석달기*/ 
