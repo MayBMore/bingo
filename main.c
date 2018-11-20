@@ -3,7 +3,8 @@
 #include <time.h> //난수 
 #define N 5 //N을 다음 숫자로 치환한다. 빙고의 크기 
 #define M 3//M을 다음 숫자로 치환한다. 빙고에서 이기는 조건 
-
+#define L 25 //N*N을 다음 숫자로 치환한다.
+ 
 /*
 1. 프로그램 시작 시 상대방(컴퓨터)와 내가 아래와 같이 NxN 크기 표에 1~N*N 사이의 숫자가 한번 씩 쓰여진 빙고 테이블 두 개를 만든다.
 2. 숫자 배치는 random으로 함
@@ -21,7 +22,7 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
  
  //전역 변수 
- int checking [N*N] ;
+ int checking [L] ;
  int count = 0;
  int bingoMe[N][N]; //내 빙고 
  int bingoCom[N][N]; //컴퓨터 빙고 
@@ -39,7 +40,8 @@
  void main() {
  	
 	int num;
-	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수 
+	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수
+	int sth; //get number에 있는 변수 
 	
 	initiate_bingo; //빙고테이블 소환 
 	
@@ -59,6 +61,22 @@
 		
 		process_bingo(bingoMe[N][N], num); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom[N][N], num);
+		
+		checking[count++] = input;
+
+			if (sth == 0) {
+
+				printf(">사용자가 '%d'를 선택했습니다. \n", input);
+
+			} 
+
+			else {
+
+				printf(">컴퓨터가 '%d'를 선택했습니다. \n \n", input);
+
+			}
+
+			return input;
 		
 		winMe = count_bingo(bingoMe[N][N]); //빙고 확인 
 		winCom = count_bingo(bingoCom[N][N]);
@@ -144,14 +162,15 @@
 	do {
 		retry = 0;
 		if (sth == 0) { //0:나, 1:컴퓨터 
-			printf("1~N*N 사이의 숫자를 입력하세요. : ");
+			printf("1~L 사이의 숫자를 입력하세요. : ");
 			scanf("%d", &input);
 			if (input<1 || input>N*N) {
 				retry = 1; //retry=1이면 입력에러. 다시 입력 
+			}
+			else { //컴퓨터가 입력 
+				get_number_by_Com(); 
 			} 
-		} 
-		} while (retry == 1);
-		
+			
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
 				if (checking[x] == input) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
@@ -160,28 +179,20 @@
 				}
 			}
 		}
-	}
-	
-	int checking[count++] = input;
-	if (sth == 0) {
-		printf("사용자가 '%d'를 선택했습니다. \n", input);
-	} 
-	else {
-		printf("컴퓨터가 '%d'를 선택했습니다. \n\n", input);
-	}
-	
-	return input;
-	
+		while (retry ==1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함	
  }
  
  int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
-	inputCom = rand()%(N*N)+1; 
+	input = rand()%L+1; 
  }
+
  
  void process_bingo(int bingo[N][N], int number) { //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
+	int i,j;
+	
 	for (i=0 ; i<N ; i++) {
 		for (j=0 ; j<N ; j++) {
-			if(bingo[i][j] == inputMe || bingo[i][j] == inputCom) 
+			if(bingo[i][j] == input || bingo[i][j] == input) 
 				bingo[i][j] = -1;
 		}
 	}
@@ -236,6 +247,7 @@
 	} 
 	
 	return 0; //아직 빙고가 없음 
+
 }
 
 
