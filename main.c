@@ -25,6 +25,7 @@
  int count = 0;
  int bingoMe[N][N]; //내 빙고 
  int bingoCom[N][N]; //컴퓨터 빙고 
+ int input; //나 그리고  컴퓨터가 입력한 숫자 
 
  //함수선언
 
