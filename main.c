@@ -39,7 +39,7 @@
  
  void main() {
  	
-	int num;
+	int num1, num2;
 	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수
 	int sth; //get number에 있는 변수 
 	
@@ -50,17 +50,17 @@
 	do {
 		
 		printf("===내 빙고판===\n"); //내 빙고판 출력 
-		print_bingo(bingoMe[N][N]);
+		print_bingo(bingoMe);
 		
-		num = get_number_byMe; //내가 번호 선택
+		num1 = get_number_byMe; //내가 번호 선택
 		
-		process_bingo(bingoMe[N][N], num); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom[N][N], num);
+		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num1);
 		
-		num =  get_number_byCom; //컴퓨터가 번호 선택
+		num2 =  get_number_byCom; //컴퓨터가 번호 선택
 		
-		process_bingo(bingoMe[N][N], num); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom[N][N], num);
+		process_bingo(bingoMe[N][N], num2); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom[N][N], num2);
 		
 		checking[count++] = input;
 
@@ -180,7 +180,7 @@
 			}
 		}	
  }
-} while (retry ==1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
+} while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
 }
  
  int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
