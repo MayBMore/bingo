@@ -52,12 +52,12 @@
 		printf("===내 빙고판===\n"); //내 빙고판 출력 
 		print_bingo(bingoMe);
 		
-		num1 = get_number_byMe; //내가 번호 선택
+		num1 = get_number_byMe(input); //내가 번호 선택
 		
 		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom, num1);
 		
-		num2 =  get_number_byCom; //컴퓨터가 번호 선택
+		num2 =  get_number_byCom(); //컴퓨터가 번호 선택
 		
 		process_bingo(bingoMe[N][N], num2); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom[N][N], num2);
