@@ -57,10 +57,10 @@
 		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom, num1);
 		
-		num2 =  get_number_byCom(); //컴퓨터가 번호 선택
+		num2 =  get_number_byCom(input); //컴퓨터가 번호 선택
 		
-		process_bingo(bingoMe[N][N], num2); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom[N][N], num2);
+		process_bingo(bingoMe, num2); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num2);
 		
 		checking[count++] = input;
 
