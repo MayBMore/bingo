@@ -137,41 +137,46 @@
 	} 
  }
 
- int get_number_byMe() { //내가 빙고 번호 입력 선택
-
-	int inputMe=0; //입력받을 숫자
-	  
-	printf("숫자를 입력하세요. : ");
-	scanf("%d", &inputMe);
-
-	/*1~N*N 정수 입력시*/ 
-	if (inputMe>=1 && inputMe<=(N*N)) {
-		for (i=0 ; i<N ; i++) {
-			for (j=0 ; j<N ; j++){
-				if(bingo[i][j]==inputMe) { //입력값이 빙고에 있을 때 
-					bingo[i][j] = -1 ; //-1로 치환
+ int get_number_byMe(int input) { //내가 빙고 번호 입력 선택
+	int inputMe; //내가 입력할 숫자
+	int x, retry; //??
+	
+	do {
+		retry = 0;
+		if (input == 0) { //0:나, 1:컴퓨터 
+			printf("1~N*N 사이의 숫자를 입력하세요. : ");
+			scanf("%d", &inputMe);
+			if (inputMe<1 || inputMe>N*N) {
+				retry = 1; //retry=1이면 입력에러. 다시 입력 
+			} 
+		} 
+		}
+		
+		if (retry == 0) {
+			for (x=0 ; x<count ; x++) {
+				if (checking[x] == inputMe && checking[x] == inputCom) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
+					retry = 1;
 					break; 
 				}
 			}
 		}
+	} while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아감
+	
+	checking[count++] = inputMe;
+	if (input == 0) {
+		printf("사용자가 '%d'를 선택했습니다. \n", inputMe);
 	} 
-	
-	/*내가 입력한 숫자와 컴퓨터가 입력한 숫자가 같을 때*/ 
-	else if (inputMe == inputCom) {
-		printf("이미 선택된 숫자입니다. 다시 선택해 주세요. : ");
-		scanf("%d", &inputMe); 
-		
-	}
-	
-	/*1~N*N 정수 입력이 아닐시*/ 
 	else {
-		printf("잘못입력하였습니다. 다시 입력해주세요. : ");
-		scanf("%d", &inputMe); 
+		printf("컴퓨터가 '%d'를 선택했습니다. \n\n", inputCom);
 	}
+	
+	return inputMe;
+	
  }
  
  int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
-	inputCom = rand()% N*N+1;
+	int inputCom;
+	inputCom = rand()%(N*N)+1; 
  }
  
  void process_bingo(int bingo[N][N], int number) { //선택된 숫자를 입력받아서 빙고 테이들 칸을 채움
@@ -181,29 +186,7 @@
 				bingo[i][j] = -1;
 		}
 	}
-	
-	/*void erase_bingo(int arr[5][5], int number) { //입력받은 number와 같은 수를 0으로 만드는 함수 
-
-	int x, y;
-
-	
-
-	for (y=0 ; y<SIZE ; y++) { //x,y를 일일이 바꿔가면서 number와 같은지 확인 
-
-		for(x=0 ; x<SIZE ; x++) {
-
-			if(arr[y][x] == number) {
-
-				arr[y][x] = 0;
-
-			}
-
-		} 
-
-	} 
-
-}*/
- }
+}
  
  int count_bingo(int bingo[N][N]) { //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환
 	
@@ -257,18 +240,3 @@
 }
 
 
-
-
-/*내일 할 일
-1.  get_number_byMe
-	get_number_byCom
-	함수 뜯어 고치기 ㅡㅡ
-
-2.	그리고 전체적으로 돌아가나 보기
-3.	안 돌아가면 운다
-4.	퀸 너무 좋다 포토티켓 다 모으고 싶고 한정판 포스터 다 모으고 싶다
-5.	돈이 없어 너무 슬프다.
-6.	이번 달 어떻게 버티지
-7.	이렇게 늦게 자서 내일 어떻게 버티지
-*/ 
- 
