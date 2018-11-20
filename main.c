@@ -33,7 +33,7 @@
  void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
  int get_number_byMe(int sth); //내가 빙고 번호 입력 선택
- int get_number_byCom(); //컴퓨터가 임의로 빙고 번호 선택
+ int get_number_byCom(int sth); //컴퓨터가 임의로 빙고 번호 선택
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
  
@@ -57,7 +57,7 @@
 		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom, num1);
 		
-		num2 =  get_number_byCom(input); //컴퓨터가 번호 선택
+		num2 =  get_number_by_Com(input); //컴퓨터가 번호 선택
 		
 		process_bingo(bingoMe, num2); //선택한 숫자 -1로 변환 
 		process_bingo(bingoCom, num2);
@@ -75,19 +75,17 @@
 				printf(">컴퓨터가 '%d'를 선택했습니다. \n \n", input);
 
 			}
-
-			return input;
 		
-		winMe = count_bingo(bingoMe[N][N]); //빙고 확인 
-		winCom = count_bingo(bingoCom[N][N]);
+		winMe = count_bingo(bingoMe); //빙고 확인 
+		winCom = count_bingo(bingoCom);
 		
 	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
 	printf("===나의 결과==="); //내 빙고판 출력 
-	print_bingo(bingoMe[N][N]);
+	print_bingo(bingoMe);
 	
 	printf("===컴퓨터의 결과==="); //컴퓨터의 빙고판 출력
-	print_bingo(bingoCom[N][N]); 
+	print_bingo(bingoCom); 
 	
 	switch (winCom*2+winMe) { //승자 알려줌 
 		case 1 : //내가 이김
@@ -168,7 +166,7 @@
 				retry = 1; //retry=1이면 입력에러. 다시 입력 
 			}
 			else { //컴퓨터가 입력 
-				get_number_by_Com(); 
+				get_number_by_Com(input); 
 			} 
 			
 		if (retry == 0) {
@@ -183,7 +181,7 @@
 } while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
 }
  
- int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
+ int get_number_by_Com(int sth) { //컴퓨터가 임의로 빙고 번호 선택
 	input = rand()%L+1; 
  }
 
