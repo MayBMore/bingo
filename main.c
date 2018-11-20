@@ -178,9 +178,10 @@
 					break; 
 				}
 			}
-		}
-		while (retry ==1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함	
+		}	
  }
+} while (retry ==1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
+}
  
  int get_number_byCom() { //컴퓨터가 임의로 빙고 번호 선택
 	input = rand()%L+1; 
