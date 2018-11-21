@@ -197,48 +197,48 @@
 }
 
  int get_number_byMe(int sth) { //내가 빙고 번호 입력 선택
-	int x, retry; //??
+	
+	int x, retry;
 	
 	do {
 		retry = 0;
-		if (sth == 0) { //0:나, 1:컴퓨터 
-			printf("1~L 사이의 숫자를 입력하세요. : ");
+		if (sth == 0) { //0:user, 1:com
+			printf(">>1 ~ L 사이의 숫자를 입력하세요. : ");
 			scanf("%d", &input);
-			if (input<1 || input>N*N) {
-				retry = 1; //retry=1이면 입력에러. 다시 입력 
-			}
-			else { //컴퓨터가 입력 
-				get_number_byCom(input); 
+			if(input<1 || input>25) {
+				retry = 1; //retry = 1이면 입력 에러. 다시 입력하게 해야 함. 
 			} 
-			 
+		}
+		else { //컴퓨터가 입력하는 부분 
+			get_number_byCom(input); 
+		}
+		
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
-				if (checking[x] == input) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
+				if (checking[x] == input) {
 					retry = 1;
-					break; 
+					break;
 				}
 			}
-		}	
- }
-} while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
-
-checking[count++] = input;
-
-			if (sth == 0) {
-				printf(">사용자가 '%d'를 선택했습니다. \n", input);
-			} 
-
-			else {
-				printf(">컴퓨터가 '%d'를 선택했습니다. \n \n", input);
-			}
-			
+		}
+	} while (retry == 1); //retry=1이면 다시 입력해야하므로 do 구문으로 돌아가게 함
+	
+	checking[count++] = input;
+	if (sth == 0) {
+		printf(">사용자가 '%d'를 선택했습니다. \n", input);
+	}
+	else {
+		printf(">컴퓨터가 '%d'를 선택했습니다. \n", input);
+	} 
+	
+	return input;
 }
 
  int get_number_byCom(int sth) { //컴퓨터가 임의로 빙고 번호 선택
 	input = rand()%L+1; 
  }
 
- void process_bingo(int bingo[N][N], int number) { ////선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
+ void process_bingo(int bingo[N][N], int number) { //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  	int i, j;
 	 for (i=0 ; i<N ; i++) { //입력받은 input과 같은지 확인 
 	 	for (j=0 ; j<N ; j++) {
