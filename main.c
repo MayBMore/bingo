@@ -202,7 +202,7 @@
 	do {
 		retry = 0;
 		if (sth == 0) { //0:user, 1:com
-			printf(">>1 ~ L 사이의 숫자를 입력하세요. : ");
+			printf(">>1 ~ 'L'사이의 숫자를 입력하세요. : ");
 			scanf("%d", &input);
 			if(input<1 || input>25) {
 				retry = 1; //retry = 1이면 입력 에러. 다시 입력하게 해야 함. 
