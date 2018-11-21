@@ -41,15 +41,11 @@
 checking[count++] = input;
 
 			if (sth == 0) {
-
 				printf(">사용자가 '%d'를 선택했습니다. \n", input);
-
 			} 
 
 			else {
-
 				printf(">컴퓨터가 '%d'를 선택했습니다. \n \n", input);
-
 			}
 			
 }
