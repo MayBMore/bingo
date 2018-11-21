@@ -29,7 +29,6 @@
  int input; //나 그리고  컴퓨터가 입력한 숫자 
 
  //함수선언
-
  void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
  int get_number_byMe(int sth); //내가 빙고 번호 입력 선택
@@ -71,26 +70,21 @@
 		
 	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
+	if (winMe == M) {
+		printf("빙고 %d개로 당신의 승리입니다. \n", M);
+	}
+	if (winCom == M) {
+		printf("빙고 %d개로 컴퓨터의 승리입니다. \n", M);
+	}
+	if ((winMe == M) && (winCom == M)){
+		printf("비겼습니다. \n");
+	}
+
 	printf(">>나의 결과\n"); //내 빙고판 출력 
 	print_bingo(bingoMe);
 	
 	printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
 	print_bingo(bingoCom); 
-	
-	switch (winCom*2+winMe) { //승자 알려줌 
-		case 1 : //내가 이김
-			printf("내가 이겼습니다.\n");
-			break;
-		case 2 : //컴퓨터가 이김
-			printf("컴퓨터가 이겼습니다.\n");
-			break;
-		case 3 : //비김
-			 printf("비겼습니다.\n");
-			 break;
-		default : //에러 
-			printf("Error\n");
-			break;
-	}
 	
 }
 
@@ -202,7 +196,7 @@
 	do {
 		retry = 0;
 		if (sth == 0) { //0:user, 1:com
-			printf(">>1 ~ 'L'사이의 숫자를 입력하세요. : ");
+			printf(">>1 ~ %d 사이의 숫자를 입력하세요. : ", L);
 			scanf("%d", &input);
 			if(input<1 || input>25) {
 				retry = 1; //retry = 1이면 입력 에러. 다시 입력하게 해야 함. 
