@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //난수 
-#include "initiate_bingo().h"
+#include "initiate_bingo().h" //
 #define N 3 //N을 다음 숫자로 치환한다. 빙고의 크기 
 #define M 2//M을 다음 숫자로 치환한다. 빙고에서 이기는 조건 
 #define L N*N //N*N을 다음 숫자로 치환한다.
@@ -22,7 +22,6 @@
  int get_number_byCom(int sth); //컴퓨터가 임의로 빙고 번호 선택
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
- 
  
  void main() {
  	
