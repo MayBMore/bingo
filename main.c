@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //난수 
-#include "C:\code\bingo\bingo\initiate_bingo().h"
+#include "initiate_bingo().h"
 #define N 3 //N을 다음 숫자로 치환한다. 빙고의 크기 
 #define M 2//M을 다음 숫자로 치환한다. 빙고에서 이기는 조건 
 #define L N*N //N*N을 다음 숫자로 치환한다.
@@ -54,8 +54,9 @@
 		winCom = count_bingo(bingoCom);
 		
 		turn = turn++;
+		printf("%d", turn);
 		
-	} while ((winMe!=M)&&(winCom!=M)); //0:승부가 나지 않음 1:빙고가 완성 됨.
+	} while ((winMe!= M)&&(winCom!= M)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
 	if (winMe == M) {
 		printf(">>나의 결과\n"); //내 빙고판 출력 
