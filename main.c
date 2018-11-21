@@ -28,7 +28,8 @@
  int bingoMe[N][N]; //내 빙고 
  int bingoCom[N][N]; //컴퓨터 빙고 
  int input; //나 그리고  컴퓨터가 입력한 숫자 
-
+ int turn = 0; //빙고 입력 횟수
+  
  //함수선언
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
  int get_number_byMe(int sth); //내가 빙고 번호 입력 선택
@@ -65,17 +66,18 @@
 		
 		winMe = count_bingo(bingoMe); //빙고 확인 
 		winCom = count_bingo(bingoCom);
+		turn = turn++;
 		
 	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
 	if (winMe == M) {
-		printf("빙고 %d개로 당신의 승리입니다. \n", M);
+		printf("빙고 %d개로 당신의 승리입니다.\n빙고 횟수 : %d\n", M, turn);
 	}
 	if (winCom == M) {
-		printf("빙고 %d개로 컴퓨터의 승리입니다. \n", M);
+		printf("빙고 %d개로 컴퓨터의 승리입니다. \n빙고 횟수 : %d\n", M, turn);
 	}
 	if ((winMe == M) && (winCom == M)){
-		printf("비겼습니다. \n");
+		printf("비겼습니다. \n빙고 횟수 : %d", turn);
 	}
 
 	printf(">>나의 결과\n"); //내 빙고판 출력 
@@ -226,5 +228,4 @@
 1. M개의 줄이 완성되면 승자 외치기
 2. 승자를 말하면서 몇번째에 내가 이겼나 말하기
 3. 변수 이름 바꾸기
-4. 주석달기
-5. .c 분리*/ 
+4. 주석달기*/ 
