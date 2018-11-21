@@ -140,7 +140,6 @@
 
 }
 
-
  void print_bingo(int bingo[N][N]) {  //빙고 테이블 현재 상황을 화면에 출력
  	
  	int i, j;
@@ -195,13 +194,11 @@
 	
 	do {
 		retry = 0;
-		if (sth == 0) { //0:user, 1:com
 			printf(">>1 ~ %d 사이의 숫자를 입력하세요. : ", L);
 			scanf("%d", &input);
 			if(input<1 || input>25) {
 				retry = 1; //retry = 1이면 입력 에러. 다시 입력하게 해야 함. 
 			} 
-		}
 		
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
