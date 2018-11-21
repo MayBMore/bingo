@@ -42,7 +42,7 @@
  
  void main() {
  	
-	int num1, num2;
+	int num;
 	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수 
 	
 	initiate_bingo(); //빙고테이블 소환 
@@ -56,15 +56,15 @@
 		printf(">>내 빙고판\n"); //내 빙고판 출력 
 		print_bingo(bingoMe);
 		
-		num1 = get_number_byMe(input); //내가 번호 선택
+		num = get_number_byMe(input); //내가 번호 선택
 		
-		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom, num1);
+		process_bingo(bingoMe, num); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num);
 		
-		num2 =  get_number_byCom(input); //컴퓨터가 번호 선택
+		num =  get_number_byCom(input); //컴퓨터가 번호 선택
 		
-		process_bingo(bingoMe, num2); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom, num2);
+		process_bingo(bingoMe, num); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num);
 		
 		winMe = count_bingo(bingoMe); //빙고 확인 
 		winCom = count_bingo(bingoCom);
