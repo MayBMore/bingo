@@ -55,9 +55,9 @@
 		turn = turn+1; //턴수 증가 
 		printf("턴 수 : %d\n\n", turn);
 		
-	} while ((winMe!=M)&&(winCom!=M)); 
+	} while ((winMe!=M)&&(winCom!=M)); //나도 빙고가 M개가 아니고 컴퓨터도 M개가 아니면 계속 do를 돈다. 
 	
-	if (winMe == M) { //내가 이겼을 때 
+	if ((winMe==M)&&(winCom!=M)) { //내가 이겼을 때 
 		printf(">>나의 결과\n"); //내 빙고판 출력 
 		print_bingo(bingoMe);
 	
@@ -66,7 +66,7 @@
 		
 		printf("빙고 %d개로 당신의 승리입니다.\n빙고 횟수 : %d\n", M, turn);
 	}
-	else if (winCom == M) { //컴퓨터가 이겼을 때 
+	else if ((winMe!=M)&&(winCom==M)) { //컴퓨터가 이겼을 때 
 		printf(">>나의 결과\n"); //내 빙고판 출력 
 		print_bingo(bingoMe);
 	
