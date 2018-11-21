@@ -55,7 +55,7 @@
 		turn = turn+1; //턴수 증가 
 		printf("턴 수 : %d\n\n", turn);
 		
-	} while ((winMe!= M)&&(winCom!= M)); //0:승부가 나지 않음 1:빙고가 완성 됨.
+	} while ((winMe!=M)&&(winCom!=M)); 
 	
 	if (winMe == M) { //내가 이겼을 때 
 		printf(">>나의 결과\n"); //내 빙고판 출력 
