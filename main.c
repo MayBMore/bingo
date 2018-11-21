@@ -42,38 +42,40 @@
  
  void main() {
  	
-	int num;
+	int num1, num2;
 	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수
 	int sth; //get number에 있는 변수 
 	
 	initiate_bingo(); //빙고테이블 소환 
 	
-	printf("=====빙고 게임을 시작하지=====\n");  
+	printf("=====빙고 게임을 시작하지=====\n");
+	
+	printf("\n\n");  
 	
 	do {
 		
-		printf("===내 빙고판===\n"); //내 빙고판 출력 
+		printf(">>내 빙고판\n"); //내 빙고판 출력 
 		print_bingo(bingoMe);
 		
-		num = get_number_byMe(input); //내가 번호 선택
+		num1 = get_number_byMe(input); //내가 번호 선택
 		
-		process_bingo(bingoMe, num); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom, num);
+		process_bingo(bingoMe, num1); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num1);
 		
-		num =  get_number_byCom(input); //컴퓨터가 번호 선택
+		num2 =  get_number_byCom(input); //컴퓨터가 번호 선택
 		
-		process_bingo(bingoMe, num); //선택한 숫자 -1로 변환 
-		process_bingo(bingoCom, num);
+		process_bingo(bingoMe, num2); //선택한 숫자 -1로 변환 
+		process_bingo(bingoCom, num2);
 		
 		winMe = count_bingo(bingoMe); //빙고 확인 
 		winCom = count_bingo(bingoCom);
 		
 	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
-	printf("===나의 결과==="); //내 빙고판 출력 
+	printf(">>나의 결과"); //내 빙고판 출력 
 	print_bingo(bingoMe);
 	
-	printf("===컴퓨터의 결과==="); //컴퓨터의 빙고판 출력
+	printf(">>컴퓨터의 결과"); //컴퓨터의 빙고판 출력
 	print_bingo(bingoCom); 
 	
 	switch (winCom*2+winMe) { //승자 알려줌 
@@ -186,7 +188,6 @@
 	}
 }
 
-
  void swap(int*x, int*y) {
 	int temp;
 	
@@ -209,7 +210,7 @@
 			else { //컴퓨터가 입력 
 				get_number_byCom(input); 
 			} 
-			
+			 
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
 				if (checking[x] == input) { //내가 입력하거나 컴퓨터가 입력한거 같은지 확인. 그냥 전역변수 선언하자 
@@ -238,11 +239,11 @@ checking[count++] = input;
  }
 
  void process_bingo(int bingo[N][N], int number) { ////선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
- 	int x, y;
-	 for (y=0 ; y<N ; y++) { //입력받은 input과 같은지 확인 
-	 	for (x=0 ; x<N ; x++) {
-	 		if (bingo[y][x] == input) {
-	 			bingo[y][x] = 0;
+ 	int i, j;
+	 for (i=0 ; i<N ; i++) { //입력받은 input과 같은지 확인 
+	 	for (j=0 ; j<N ; j++) {
+	 		if (bingo[i][j] == input) {
+	 			bingo[i][j] = -1;
 			 }
 		 } 
 	 } 
