@@ -5,20 +5,6 @@
 #define N 3 //N을 다음 숫자로 치환한다. 빙고의 크기 
 #define M 2//M을 다음 숫자로 치환한다. 빙고에서 이기는 조건 
 #define L N*N //N*N을 다음 숫자로 치환한다.
- 
-/*
-1. 프로그램 시작 시 상대방(컴퓨터)와 내가 아래와 같이 NxN 크기 표에 1~N*N 사이의 숫자가 한번 씩 쓰여진 빙고 테이블 두 개를 만든다.
-2. 숫자 배치는 random으로 함
-3. 매 turn마다 다음을 반복
-	-나의 현재 NxN 빙고 테이블 상태를 화면에 표시 (이미 채운 칸은 -1을 표시하고, 아직 채워지지 않은 칸은 숫자를 표시
-	-숫자를 선택하라고 화면에 출력하고 이번 turn에서 내가 채울 칸의 숫자를 입력
-	-선택한 숫자에 해당하는 내 빙고 테이블과 상대방 빙고 테이블의 칸을 채움
-	-상대방(컴퓨터)가 채울 칸의 숫자를 random으로 선택하고 선택된 숫자를 화면에 출력
-	-나 혹은 상대방의 빙고테이블이 가로/세로/대각선 줄이 M개 이상 만들어지면 반복 종료
-4. M개 줄이 만들어진 쪽이 승리하며, 승리자가 누군지와 몇번째 turn에서 승부가 났는지 출력
-5. 내가 숫자를 선택할 때, 이미 선택되었거나 범위 밖의 숫자를 선택하면 오류 메세지를 출력하고 다시 숫자를 입력.
-*/
-
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
  
@@ -66,25 +52,38 @@
 		
 		winMe = count_bingo(bingoMe); //빙고 확인 
 		winCom = count_bingo(bingoCom);
+		
 		turn = turn++;
 		
-	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
+	} while ((winMe!=M)&&(winCom!=M)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
 	if (winMe == M) {
+		printf(">>나의 결과\n"); //내 빙고판 출력 
+		print_bingo(bingoMe);
+	
+		printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
+		print_bingo(bingoCom);
+		
 		printf("빙고 %d개로 당신의 승리입니다.\n빙고 횟수 : %d\n", M, turn);
 	}
-	if (winCom == M) {
+	else if (winCom == M) {
+		printf(">>나의 결과\n"); //내 빙고판 출력 
+		print_bingo(bingoMe);
+	
+		printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
+		print_bingo(bingoCom);
+		
 		printf("빙고 %d개로 컴퓨터의 승리입니다. \n빙고 횟수 : %d\n", M, turn);
 	}
-	if ((winMe == M) && (winCom == M)){
-		printf("비겼습니다. \n빙고 횟수 : %d", turn);
-	}
-
-	printf(">>나의 결과\n"); //내 빙고판 출력 
-	print_bingo(bingoMe);
+	else if ((winMe == M) && (winCom == M)){
+		printf(">>나의 결과\n"); //내 빙고판 출력 
+		print_bingo(bingoMe);
 	
-	printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
-	print_bingo(bingoCom); 
+		printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
+		print_bingo(bingoCom);
+		
+		printf("비겼습니다. \n빙고 횟수 : %d", turn);
+	} 
 	
 }
 
@@ -228,4 +227,5 @@
 1. M개의 줄이 완성되면 승자 외치기
 2. 승자를 말하면서 몇번째에 내가 이겼나 말하기
 3. 변수 이름 바꾸기
-4. 주석달기*/ 
+4. 주석달기
+5. 내가 숫자를 선택할 때, 이미 선택되었거나 범위 밖의 숫자를 선택하면 오류 메세지를 출력하고 다시 숫자를 입력.*/ 
