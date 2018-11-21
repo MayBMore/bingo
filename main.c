@@ -43,8 +43,7 @@
  void main() {
  	
 	int num1, num2;
-	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수
-	int sth; //get number에 있는 변수 
+	int winMe, winCom; //내가 이겼을 때 변수, 컴퓨터가 이겼을 때 변수 
 	
 	initiate_bingo(); //빙고테이블 소환 
 	
@@ -154,7 +153,7 @@
 	
 	for (i=0 ; i<N ; i++) {
 		for (j=0 ; j<N ; j++) {
-			if (bingo[i][j] != -1) { //why?
+			if (bingo[i][j] != -2) { //why?
 				printf("%7d", bingo[i][j]);
 			}
 			
@@ -231,12 +230,10 @@
  int get_number_byCom(int sth) { //컴퓨터가 임의로 빙고 번호 선택
 	
 	int x, retry;
+	
 	do {
-		retry = 0;
-		if (sth == 1) { //0:user, 1:com 
-			input = rand()%L+1;
-		}
-		
+		retry=0;
+		input = rand()%L+1;
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
 				if (checking[x] == input) {
@@ -245,12 +242,10 @@
 				}
 			}
 		}
-	} while (retry == 1); //retry=1 이면 다시 do 구문으로
+	} while (retry == 1); //do 구문으로 돌아가기
 	checking[count++] = input;
-	if (sth == 1) {
-		printf(">컴퓨터가 '%d'를 선택했습니다. \n\n", input);
-	}
-	return input;
+	printf(">컴퓨터가 '%d'를 선택했습니다. \n\n", input);
+	return input; 
 }
 
  void process_bingo(int bingo[N][N], int number) { //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
