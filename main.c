@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //난수 
-#define N 2 //N을 다음 숫자로 치환한다. 빙고의 크기 
+#include "C:\code\bingo\bingo\initiate_bingo().h"
+#define N 3 //N을 다음 숫자로 치환한다. 빙고의 크기 
 #define M 2//M을 다음 숫자로 치환한다. 빙고에서 이기는 조건 
-#define L 4 //N*N을 다음 숫자로 치환한다.
+#define L N*N //N*N을 다음 숫자로 치환한다.
  
 /*
 1. 프로그램 시작 시 상대방(컴퓨터)와 내가 아래와 같이 NxN 크기 표에 1~N*N 사이의 숫자가 한번 씩 쓰여진 빙고 테이블 두 개를 만든다.
@@ -29,14 +30,11 @@
  int input; //나 그리고  컴퓨터가 입력한 숫자 
 
  //함수선언
- void initiate_bingo(); // 빙고 테이블을 초기에 만들어줌
  void print_bingo(int bingo[N][N]); //빙고 테이블 현재 상황을 화면에 출력
  int get_number_byMe(int sth); //내가 빙고 번호 입력 선택
  int get_number_byCom(int sth); //컴퓨터가 임의로 빙고 번호 선택
  void process_bingo(int bingo[N][N], int number); //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  int count_bingo(int bingo[N][N]); //빙고 테이블이 채운 가로/세로/대각선 줄 수를 계산해서 반환 
- void set_rand(int*bingo);
- void swap(int*x, int*y);
  
  
  void main() {
@@ -159,34 +157,6 @@
 		
 	} 
  }
- 
- void initiate_bingo() { //빙고 테이블을 초기에 만들어 줌 
-	
-	srand((unsigned int)time(NULL));
-	
-	set_rand((int*)bingoMe);
-	set_rand((int*)bingoCom);
-}
-
- void set_rand(int*bingo) { 
-	int i;
-	
-	for (i=0 ; i<L ; i++) {
-		bingo[i] = i+1;
-	}
-	
-	for (i=0 ; i<L ; i++) {
-		swap(&bingo[i], &bingo[rand()%L]);
-	}
-}
-
- void swap(int*x, int*y) {
-	int temp;
-	
-	temp = *x;
-	*x = *y;
-	*y = temp;
-}
 
  int get_number_byMe(int sth) { //내가 빙고 번호 입력 선택
 	
@@ -256,4 +226,5 @@
 1. M개의 줄이 완성되면 승자 외치기
 2. 승자를 말하면서 몇번째에 내가 이겼나 말하기
 3. 변수 이름 바꾸기
-5. 주석달기*/ 
+4. 주석달기
+5. .c 분리*/ 
