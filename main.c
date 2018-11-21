@@ -209,9 +209,6 @@
 				retry = 1; //retry = 1이면 입력 에러. 다시 입력하게 해야 함. 
 			} 
 		}
-		else { //컴퓨터가 입력하는 부분 
-			get_number_byCom(input); 
-		}
 		
 		if (retry == 0) {
 			for (x=0 ; x<count ; x++) {
@@ -227,23 +224,41 @@
 	if (sth == 0) {
 		printf(">사용자가 '%d'를 선택했습니다. \n", input);
 	}
-	else {
-		printf(">컴퓨터가 '%d'를 선택했습니다. \n", input);
-	} 
 	
 	return input;
 }
 
  int get_number_byCom(int sth) { //컴퓨터가 임의로 빙고 번호 선택
-	input = rand()%L+1; 
- }
+	
+	int x, retry;
+	do {
+		retry = 0;
+		if (sth == 1) { //0:user, 1:com 
+			input = rand()%L+1;
+		}
+		
+		if (retry == 0) {
+			for (x=0 ; x<count ; x++) {
+				if (checking[x] == input) {
+					retry = 1;
+					break;
+				}
+			}
+		}
+	} while (retry == 1); //retry=1 이면 다시 do 구문으로
+	checking[count++] = input;
+	if (sth == 1) {
+		printf(">컴퓨터가 '%d'를 선택했습니다. \n\n", input);
+	}
+	return input;
+}
 
  void process_bingo(int bingo[N][N], int number) { //선택된 숫자를 입력받아서 빙고 테이블 칸을 채움
  	int i, j;
 	 for (i=0 ; i<N ; i++) { //입력받은 input과 같은지 확인 
 	 	for (j=0 ; j<N ; j++) {
 	 		if (bingo[i][j] == input) {
-	 			bingo[i][j] = -2;
+	 			bingo[i][j] = -1;
 			 }
 		 } 
 	 } 
