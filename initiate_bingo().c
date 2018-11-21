@@ -15,7 +15,7 @@
  
  void initiate_bingo() { //빙고 테이블을 초기에 만들어 줌 
 	
-	srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL));  
 	
 	set_rand((int*)bingoMe);
 	set_rand((int*)bingoCom);
@@ -33,8 +33,8 @@
 	}
 }
 
- void swap(int*x, int*y) {
-	int temp;
+ void swap(int*x, int*y) { 
+	int temp; //임시변수 
 	
 	temp = *x;
 	*x = *y;
