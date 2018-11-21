@@ -72,10 +72,10 @@
 		
 	} while ((winMe==0)&&(winCom==0)); //0:승부가 나지 않음 1:빙고가 완성 됨.
 	
-	printf(">>나의 결과"); //내 빙고판 출력 
+	printf(">>나의 결과\n"); //내 빙고판 출력 
 	print_bingo(bingoMe);
 	
-	printf(">>컴퓨터의 결과"); //컴퓨터의 빙고판 출력
+	printf(">>컴퓨터의 결과\n"); //컴퓨터의 빙고판 출력
 	print_bingo(bingoCom); 
 	
 	switch (winCom*2+winMe) { //승자 알려줌 
@@ -243,7 +243,7 @@
 	 for (i=0 ; i<N ; i++) { //입력받은 input과 같은지 확인 
 	 	for (j=0 ; j<N ; j++) {
 	 		if (bingo[i][j] == input) {
-	 			bingo[i][j] = -1;
+	 			bingo[i][j] = -2;
 			 }
 		 } 
 	 } 
